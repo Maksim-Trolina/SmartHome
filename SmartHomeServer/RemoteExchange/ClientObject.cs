@@ -9,7 +9,6 @@ namespace SmartHomeServer.RemoteExchange
         readonly TcpClient client;
         readonly Chart chart;
         readonly Form1 form;
-        int tick = 0;
         public ClientObject(TcpClient tcpClient, Chart chart, Form1 form)
         {
             client = tcpClient;
@@ -35,7 +34,6 @@ namespace SmartHomeServer.RemoteExchange
                     while (stream.DataAvailable);
                     Action updateAction = () =>
                     {
-                        tick++;
                         chart.Series[0].Points.AddXY(DateTime.Now, result);
                     };
                     form.UpdateChart(updateAction);
